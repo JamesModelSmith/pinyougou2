@@ -4,6 +4,7 @@ import java.util.List;
 import com.pinyougou.pinyougouparent.entity.PageResult;
 import com.pinyougou.pinyougouparent.entity.Result;
 import com.pinyougou.pinyougouparent.pojo.TbGoods;
+import com.pinyougou.pinyougouparent.pojo.TbItem;
 import com.pinyougou.pinyougouparent.pojo.pojogroup.Goods;
 import com.pinyougou.pinyougouparent.service.pageService.ItemPageService;
 import com.pinyougou.pinyougouparent.service.sellergoods.service.GoodsService;
@@ -112,7 +113,7 @@ public class GoodsController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 *
 	 * @param page
 	 * @param rows
 	 * @return
@@ -128,10 +129,23 @@ public class GoodsController {
 	public Result updateStatus(Long[] ids,String status){
 		try {
 			goodsService.updateStatus(ids,status);
-			return new Result(true,"成功");
+			if("1".equals(status)){//如果是审核通过
+				//导入到索引库中
+				//得到需要导入到SKU列表
+				//List<TbItem> itemList=goodsService.findItemListByGoodsIdListAndStatus(id,status);
+				//导入到solr
+				//itemSearchService.importList(itemList);
+				//***生成商品详细页
+				for(Long goodsId:ids){
+					itemPageService.genItemHtml(goodsId);
+				}
+
+
+			}
+			return new Result(true,"修改状态成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(false,"失败");
+			return new Result(false,"修改状态失败");
 		}
 
 	}
