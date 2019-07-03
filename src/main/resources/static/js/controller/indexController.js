@@ -1,14 +1,10 @@
+//首页控制器
 app.controller('indexController',function($scope,loginService){
-	
-	
-	//显示当前用户名
 	$scope.showLoginName=function(){
-		loginService.loginName().success(
-			function(response){
-				$scope.loginName=response.loginName;				
-			}
-		);		
+			loginService.showName().success(
+					function(response){
+						$scope.loginName=response.loginName;
+					}
+			);
 	}
-	
-	
 });

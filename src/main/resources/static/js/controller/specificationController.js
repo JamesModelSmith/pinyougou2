@@ -75,10 +75,11 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
-	}
+	};
 	
-	//$scope.entity={specificationOptionList:[]};
-	
+	$scope.entity={specificationOptionList:[]};
+	//定义列表
+    // $scope.entity.specificationOptionList=[]; 错误定义，entity本身就是空的，所以会出错
 	//增加规格选项行
 	$scope.addTableRow=function(){
 		$scope.entity.specificationOptionList.push({});			
@@ -86,6 +87,7 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 	
 	//删除规格选项行
 	$scope.deleTableRow=function(index){
+		//删除列表中是数据
 		$scope.entity.specificationOptionList.splice(index,1);
 	}
     

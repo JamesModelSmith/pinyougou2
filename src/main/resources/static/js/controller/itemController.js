@@ -128,4 +128,17 @@ app.controller('itemController' ,function($scope,$controller   ,itemService){
 		}
 		$scope.sku={id:0,title:'----',price:0};
     }
+    //添加商品到购物车
+	$scope.addToCart=function () {
+		alert('SKUID:'+$scope.sku.id);
+		$http.get('../cart/addGoodsToCartList?itemId='+$scope.sku.id+'&num='+$scope.num,{'withCredentials':true}).success(
+			function (response) {
+				if(response.success){
+					location.href='cart.html';
+				}else {
+					alert(response.message);
+				}
+            }
+		);
+    }
 });	

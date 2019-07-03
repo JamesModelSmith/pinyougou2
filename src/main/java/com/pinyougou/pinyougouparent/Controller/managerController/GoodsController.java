@@ -129,19 +129,19 @@ public class GoodsController {
 	public Result updateStatus(Long[] ids,String status){
 		try {
 			goodsService.updateStatus(ids,status);
-			if("1".equals(status)){//如果是审核通过
-				//导入到索引库中
-				//得到需要导入到SKU列表
-				//List<TbItem> itemList=goodsService.findItemListByGoodsIdListAndStatus(id,status);
-				//导入到solr
-				//itemSearchService.importList(itemList);
-				//***生成商品详细页
-				for(Long goodsId:ids){
-					itemPageService.genItemHtml(goodsId);
-				}
-
-
-			}
+//			if("1".equals(status)){//如果是审核通过
+//				//导入到索引库中
+//				//得到需要导入到SKU列表
+//				//List<TbItem> itemList=goodsService.findItemListByGoodsIdListAndStatus(id,status);
+//				//导入到solr
+//				//itemSearchService.importList(itemList);
+//				//***生成商品详细页
+//				for(Long goodsId:ids){
+//					itemPageService.genItemHtml(goodsId);
+//				}
+//
+//
+//			}
 			return new Result(true,"修改状态成功");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -64,7 +64,7 @@ public class BrandServiceimpl implements BrandService {
     public PageResult findPage(TbBrand brand, int pageNum, int pageSize) {
 
         PageHelper.startPage(pageNum,pageSize);//分页
-
+        //自定义查询条件
         TbBrandExample example=new TbBrandExample();
 
         TbBrandExample.Criteria criteria=example.createCriteria();

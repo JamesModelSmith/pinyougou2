@@ -69,7 +69,7 @@ app.controller('brandController',function ($scope,$http,brandService,$controller
         );
     };
     $scope.searchEntity={};
-    //条件查询
+    //条件查询,控制前台显示数据的方法。page是当前页，rows是每页要显示的条数
     $scope.search=function (page,rows) {
         brandService.search(page,rows,$scope.searchEntity).success(
             function (response) {
